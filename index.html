@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #283149;
+           }
+           h1 {
+            font-size: 5rem;
+            color: #DBEDF3;
+            font-family: "Arvo", cursive;
+            text-shadow: 3px 0 #614004;
+           }
+           footer {
+            color: #DBEDF3;
+            font-family: sans-serif;
+           }
+           .a {
+            background-image: url("a.gif");
+            background-size: cover;
+            background-repeat: no-repeat;
+           }
+           .s {
+            background-image: url("s.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+           }
+           .d {
+            background-image: url("w.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+           }
+           .w {
+            background-image: url("d.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+           }
+           .animal {
+            background-color: white;
+            background-size: cover;
+            background-repeat: no-repeat;
+            outline: none;
+            border: 20px solid #658d61;
+            border-radius: 25px;
+            font-size: 5rem;
+            font-family: 'Roboto', cursive;
+            font-weight: 900;
+            line-height: 5;
+            color: #614105;
+            text-shadow: 3px 0 #edf107;
+            display: inline-block;
+            width: 500px;
+            height: 500px;
+            margin: 15px;
+            text-align: center;
+           }
+           .pressed {
+            box-shadow: 0 3px 4px 0 #DBEDF3;
+            opacity: 0.5;
+          }
+    </style>
+</head>
+<body>
+    <h1 id="title">Soundings</h1>
+    <div class="set">
+    <button class="a animal">a</button>
+    <button class="s animal">s</button>
+    <button class="d animal">d</button>
+    <button class="w animal">w</button>
+    </div>
+
+    <script>
+        var numberOfAnimalButtons = document.querySelectorAll(".animal").length;
+        for (var i = 0; i < numberOfAnimalButtons; i++) {
+
+        document.querySelectorAll(".animal")[i].addEventListener("click", function() {
+            let buttons = this.innerText;
+            //passing the key
+            playSound(buttons);
+            buttonAnimation(buttons)
+            });
+        };
+
+        document.addEventListener("keydown",function(e){
+            //call the playsound and use the event
+           playSound(e.key);
+            buttonAnimation(e.key)
+            console.log(e)
+        });
+        
+        function playSound(key) {
+            switch (key){
+                case "a":
+                let audio = new Audio ("a.mp3");
+                audio.play();
+                break;
+                case "s":
+                let audio2 = new Audio ("s.mp3");
+                audio2.play();
+                break;
+                case "d":
+                let audio3 = new Audio ("d.mp3");
+                audio3.play();
+                break;
+                case "w":
+                let audio4 = new Audio ("w.mp3");
+                audio4.play();
+                break;
+                default:
+                break;
+            }
+        }
+
+                function buttonAnimation(currentKey) {
+            var activeButton = document.querySelector("." + currentKey);
+            activeButton.classList.add("pressed");
+            setTimeout(function() {
+            activeButton.classList.remove("pressed");
+            }, 900);
+           }
+    </script>
+</body>
+</html>
